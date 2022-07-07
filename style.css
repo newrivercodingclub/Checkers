@@ -1,3 +1,27 @@
-.wrapper {
+#wrapper {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  font-family: "Papyrus", fantasy;
+}
+#title {
+  align-items: center;
+}
+
+#startgamesubtext {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  vertical-align: text-bottom;
+  color: #11ee11;
+  text-shadow: 2px 2px 5px #c9f6c9;
+  font-family: "Monaco", monospace;
 }
