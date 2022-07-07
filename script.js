@@ -20,9 +20,9 @@ forced move when take a peice take is available, if more than one legal forced t
 
 */
 
-function board_move(incoming_index, outbound_index, player){
-    incoming_index = 0
-    //do math to figure out what the piece will move over
-    if piece moves over oponent's piece -> index of oponents piece = 0
-    outbound_index = if_player1_1_or_player2_2
-}
+// function board_move(incoming_index, outbound_index, player){
+//     incoming_index = 0
+//     //do math to figure out what the piece will move over
+//     if piece moves over oponent's piece -> index of oponents piece = 0
+//     outbound_index = if_player1_1_or_player2_2
+// }
