@@ -43,35 +43,59 @@ let board = [
 
 let legalBoard = [1, 3, 5, 7, 8, 10, 12, 14];
 
+const tileWidth = 90;
+const canvasSize = 720
 // index(14) (14 % 8) = 6
 
-class Canvas {
-  constructor() {
-    this.canvas = document.getElementById("board");
-    this.ctx = this.canvas.getContext("2d");
-  }
+//a utility class to reference the current canvas' context
+class Canvas{
+    constructor(){
+        this.canvas = document.getElementById('board')
+        this.canvas.height = canvasSize
+        this.canvas.width = canvasSize
+        this.ctx = this.canvas.getContext('2d')
+    }
 }
 
-let tileWidth = 90;
+const canvas = new Canvas();
 
+//return the alternate color to a given argument (white => black)
 function color_iterator(color) {
-  return "white" ? "black" : "black";
+  return color == "white" ? "black" : "white";
 }
 
-function draw_board(index_x, index_y, color = "black") {
-  console.log("hello");
-  if (index_x < 720) {
-    let new_color = color_iterator(color);
-    Canvas.ctx.fillStyle = new_color;
-    Canvas.ctx.fillRect(index_x, index_y, tileWidth, tileWidth);
-    let new_x = index_x + tileWidth;
-    draw_board(new_x, index_y, new_color);
-  } else {
-    let new_x = 0;
-    let new_y = index_y + tileWidth;
-    let new_color = color_iterator(color);
+//draw alternating color squares with dimensions 90x90
+function draw_board(x, y, color = "white") {
+  if (x < 720) {
+    const new_color = color_iterator(color);
+    canvas.ctx.fillStyle = new_color;
+    canvas.ctx.fillRect(x, y, tileWidth, tileWidth);
+    const new_x = x + tileWidth;
+    draw_board(new_x, y, new_color);
+  }
+  else if( x >= 720 && y < 720) {
+    const new_x = 0;
+    const new_y = y + tileWidth;
+    const new_color = color_iterator(color);
     draw_board(new_x, new_y, new_color);
   }
 }
 
+//sort the board into a objects of tiles coordinates and their index
+const tile_to_coord = (tile, index) => {
+    const x = tile % 8
+    const y = Math.floor(tile / 8)
+    const value = tile
+    return {x: x, y: y, value: value, index: index}
+}
+const tiles = board.map((value, index) => tile_to_coord(value, index));
+//filter out any tiles that don't contain a piece
+const active_tiles = tiles.filter((obj) => obj.value > 0);
+
+function draw_pieces(){
+    
+    
+}
+
 draw_board(0, 0);
+draw_pieces(0, 0, "blue")
