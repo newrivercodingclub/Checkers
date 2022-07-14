@@ -15,3 +15,11 @@
   font-family: "Monaco", monospace;
   text-shadow: -1px 1px 0 #000000, 2px 2px 9px #000000;
 }
+
+#redpiece {
+  color: red;
+}
+
+#bluepiece {
+  color: blue;
+}
