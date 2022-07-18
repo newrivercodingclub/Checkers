@@ -1,3 +1,9 @@
+body{
+  background-color: black;
+  font-family: "Papyrus", fantasy;
+  color: white;
+}
+
 #wrapper {
   display: flex;
   align-items: center;
@@ -6,14 +12,19 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  font-family: "Papyrus", fantasy;
 }
 
 #startgamesubtext {
   vertical-align: text-bottom;
   color: #11ee11;
   font-family: "Monaco", monospace;
-  text-shadow: -1px 1px 0 #000000, 2px 2px 9px #000000;
+  text-shadow: -1px 1px 0 #ffffff, 2px 2px 9px #ffffff;
+}
+
+#startgamesubtext:hover{
+  font-size: 10em;
+  color: blue;
+  transition: font-size 5s, color 5s;
 }
 
 #redpiece {
