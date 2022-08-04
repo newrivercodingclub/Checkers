@@ -34,3 +34,21 @@ taking piece:
 //     if piece moves over oponent's piece -> index of oponents piece = 0
 //     outbound_index = if_player1_1_or_player2_2
 // }
+
+
+*click down*
+does tile host a piece?
+log piece(temp var)
+clear piece(not temp)
+draw temp piece at current mouse position
+draw legal moves (highlighted box)
+
+
+*click up*
+is legal move for selected piece?
+    part of legal board set
+    can't move back
+    must be diagonal
+draw temp piece as permanent piece
+if enemy piece jumped, clear enemy piece (set to 0)
+if in back row, promote to king
