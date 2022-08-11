@@ -150,29 +150,43 @@ function to_translucent(color) {
 function is_legal(from, to) {
   //accepts from: an object describing the piece moving
   //and to: the index of the tile piece is attempting to move to
-  if (to.value == 0){
-    if (legalBoard.includes(to.index)) {
-      if (from.color == colors.red) {
-        if (from.index > to.index) {
-          if ((from.index - to.index) % 7 == 0 || (from.index - to.index) % 9 == 0) {
-            return true;
-          }
-        }
-      } else if (from.color == colors.blue) {
-        if (from.index < to.index) {
-          if ((to.index - from.index) % 7 == 0 || (to.index - from.index) % 9 == 0) {
-            return true;
-          }
+  if (legalBoard.includes(to.index)) {
+    if (from.color == colors.red) {
+      if (from.index > to.index) {
+        if ((from.index - to.index) % 7 == 0 || (from.index - to.index) % 9 == 0) {
+          return true;
         }
       }
-    } else {
-      return false;
+    } else if (from.color == colors.blue) {
+      if (from.index < to.index) {
+        if ((to.index - from.index) % 7 == 0 || (to.index - from.index) % 9 == 0) {
+          return true;
+        }
+      }
+    } else if (from.value == 3 || from.value == 4){
+      if ((to.index - from.index) % 7 == 0 || (to.index - from.index) % 9 == 0) {
+        return true;
+      }
     }
+  } else {
+    return false;
+  }
+}
+
+function is_jump(to){
+  if( to.value > 0){
+    return [to.index]
   }
 }
 
 function legal_moves(from) {
-  return legalBoard.filter((to) => is_legal(from, tile_to_object(to)))
+  //TODO: if enemy piece in between valid tile and moving piece, trigger jump logic (capture piece and add move)
+  
+  const all_diagonals = legalBoard.filter((to) => is_legal(from, tile_to_object(to)))
+  const jumped_tiles = all_diagonals.filter((to) => is_jump(tile_to_object(to)))
+  const non_jumped_tiles = all_diagonals.filter((to) => !is_jump(tile_to_object(to)))
+  // console.log(all_diagonals, jump_moves, single_moves)
+  return non_jumped_tiles
 }
 
 //store the currently selected (moving) piece as an object
